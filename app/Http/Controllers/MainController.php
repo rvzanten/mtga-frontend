@@ -17,7 +17,6 @@ class MainController extends Controller
 		 $data = array(
 			 'docs' => file_get_contents(base_path().'/resources/docs.html')
 		 );
-
 		return view('docs', $data);
 	}
 }

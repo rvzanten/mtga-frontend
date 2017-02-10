@@ -90,4 +90,8 @@ input {
 .docs_content {
   margin-top: 25px; }
 
+.swaggerui {
+  border: none;
+  height: 500px; }
+
 /*# sourceMappingURL=main.css.map */
