@@ -8,7 +8,9 @@ class MainController extends Controller
 {
     function index(){
 
-		 $data = array();
+		 $data = array(
+			 'server_url' => config('app.server_url')
+		 );
 
 		return view('welcome', $data);
 	}

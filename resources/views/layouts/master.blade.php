@@ -10,7 +10,8 @@
     </head>
     <body>
 		<header class="widthCenter">
-			<h1>logo</h1>
+			<h1></h1>
+			<small onclick="alert('cee76b3f7949345506573e872691902adce071a1fd563f9bff7d2888583c644d')">cee76b3f7949345506573e872691902adce071a1fd563f9bff7d2888583c644d</small>
 		</header>
         <div class="container">
 			<div class="nav widthCenter">
@@ -23,16 +24,6 @@
             </div>
 			<footer class="widthCenter"></footer>
         </div>
-        	<script>
-		var baseurl = "{{ $baseurl }}" ;
-                console.log(baseurl)
-	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/sha256.min.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-hex.js" type="text/javascript"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.js" type="text/javascript"></script>
-	<script src="js/app.js" type="text/javascript"></script>
+		@yield('js')
     </body>
-
 </html>

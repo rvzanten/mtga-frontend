@@ -9,15 +9,26 @@ html, body {
 
 header {
   height: 50px; }
-
-header > h1 {
-  width: 200px;
-  border: 1px solid gray;
-  height: 90%;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  margin-top: 10px; }
+  header h1 {
+    width: 200px;
+    background-image: url(../img/mtga.png);
+    background-repeat: no-repeat;
+    background-position: 35px;
+    background-size: 50% 50%;
+    height: 90%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px; }
+  header small {
+    font-size: 3px;
+    float: left;
+    margin-left: 32px;
+    position: relative;
+    top: -6px;
+    cursor: pointer; }
+    header small:hover {
+      color: green; }
 
 .widthCenter {
   margin-left: auto;
@@ -25,7 +36,7 @@ header > h1 {
   width: 80%; }
 
 .container {
-  margin-top: 30px;
+  margin-top: 10px;
   width: 100%; }
 
 .content {
@@ -93,5 +104,17 @@ input {
 .swaggerui {
   border: none;
   height: 500px; }
+
+#tree {
+  height: 400px;
+  width: 90%;
+  border: 1px solid gray;
+  background-color: #fff; }
+  #tree button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: center;
+    margin-top: 180px; }
 
 /*# sourceMappingURL=main.css.map */
