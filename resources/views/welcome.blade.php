@@ -5,7 +5,7 @@
 @section('content')
 	<article>
 		<div id="holder">
-			-Drag and Drop your document here-
+			Drag and Drop your document here
 		</div>
 		<h4 id="sha256"></h4>
 	</article>
