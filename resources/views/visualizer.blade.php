@@ -3,5 +3,5 @@
 @section('title', 'Upload')
 
 @section('content')
-    <p>Visualizer</p>
+    <h2>Visualizer</h2>
 @endsection

@@ -14,6 +14,8 @@ return [
 
     'name' => 'Laravel',
 
+    'server_url' => 'http://localhost:9090',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
-@section('title', 'Upload')
+@section('title', 'Docs')
 
 @section('content')
-    <p>Docs</p>
+    <h2>Docs</h2>
+	<div class="docs_content widthCenter">
+		{!! $docs !!}
+	</div>
 @endsection

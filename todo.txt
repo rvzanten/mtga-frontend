@@ -1,5 +1,4 @@
--home
--swagger
+-uploadding (css, js en html basis staat klaar, js nog niet getest met server)
+-swagger (nu static kan eventueel realtime)
 -vizualizer
--uploadding
--apidocs
+-apidocs (markdown staat klaar moet nu ingeladen worden door serverererererer)

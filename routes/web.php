@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MainController@index');
 
-Route::get('/docs', function () {
-    return view('docs');
-});
+Route::get('/docs', 'MainController@docs');
+
+/*Route::get('/swagger.json', function () {
+	return response()->json(json_decode(file_get_contents('swagger.json'), true));
+});*/
 
 Route::get('/visualizer', function () {
     return view('visualizer');

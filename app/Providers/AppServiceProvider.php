@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+		view()->composer('layouts.master', function($view)
+	    {
+	        $view->with('baseurl', config('app.server_url'));
+	    });
     }
 
     /**
