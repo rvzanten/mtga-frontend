@@ -14,7 +14,7 @@ return [
 
     'name' => 'Laravel',
 
-    'server_url' => 'http://localhost:9090',
+    'server_url' => env('APP_OTSURL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------

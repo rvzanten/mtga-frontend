@@ -100,7 +100,7 @@ var send = document.getElementById('send');
 				webhook_url: webhook,
 				email_address: email
 			}
-			api(item,'POST','1/withcallback',responseHandler);
+			api(item,'POST','/1/withcallback',responseHandler);
 
 
 

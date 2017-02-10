@@ -23,9 +23,9 @@
             </div>
 			<footer class="widthCenter"></footer>
         </div>
-    </body>
-	<script type="text/javascript">
+        	<script>
 		var baseurl = "{{ $baseurl }}" ;
+                console.log(baseurl)
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/hmac-sha256.js" type="text/javascript"></script>
@@ -33,4 +33,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-hex.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/enc-base64.js" type="text/javascript"></script>
 	<script src="js/app.js" type="text/javascript"></script>
+    </body>
+
 </html>
