@@ -3,11 +3,9 @@ var body = getEl('body');
 var dragndrop_holder = getEl('.holder');
 var send = getEl('.send');
 var clear = getEl('.clear');
-
 if (typeof window.FileReader === 'undefined') {
 	alert('Filereader is not supported in this browser')
 }
-
 body.ondragover = function () {
 	dragndrop_holder.style.borderColor = "black";
 	dragndrop_holder.innerHTML = 'Drag and Drop your document here';
@@ -26,24 +24,21 @@ body.ondrop = function (e) {
 	dragndrop_holder.innerHTML = '<img src="img/tick.png" />';
 	e.preventDefault();
 	var file = e.dataTransfer.files[0],
-			reader = new FileReader();
+	reader = new FileReader();
 	reader.onloadend = function () {
 		hash(reader.result)
 	}
 	reader.readAsArrayBuffer(file);
 	return false;
 };
-
 function getEl(selector){
 	return document.querySelector(selector);
 }
-
 function hash(blob) {
 	var hash = getEl('.sha256');
 	hash.innerHTML = CryptoJS.SHA256(arrayBufferToWordArray(blob)).toString(CryptoJS.enc.Hex);
 	base = CryptoJS.SHA256(arrayBufferToWordArray(blob)).toString(CryptoJS.enc.Base64);
 }
-
 function arrayBufferToWordArray(ab) {
 	var i8a = new Uint8Array(ab);
 	var a = [];
@@ -52,7 +47,6 @@ function arrayBufferToWordArray(ab) {
 	}
 	return CryptoJS.lib.WordArray.create(a, i8a.length);
 }
-
 function api(params, method, endpoint, cb) {
 	var url = baseurl + endpoint;
 	var request = new XMLHttpRequest();
@@ -74,49 +68,38 @@ function api(params, method, endpoint, cb) {
 	};
 	request.send();
 }
-
 send.addEventListener('click', function(){
 	var errors = getEl('.error')
 	var input_email = getEl('.email');
 	var webhook_url = getEl('.webhook');
-
+	var hash = getEl('.sha256');
 	if (webhook_url.value ){
 		var webhook = webhook_url.value;
 	} else {
 		var webhook = '';
 	}
 	errors.innerHTML = '';
-
 	if(input_email.value.length == 0){
 		errors.innerHTML += 'No a valid Email address';
 		return;
 	}
-
-	var hash = getEl('.sha256');
 	if (getEl('.sha256').innerHTML.length != 64 ){
 		errors.innerHTML += "Invalid Hash";
 		return;
-
 	}
-
-	var item = {
+	api({
 		document_hash: base,
 		webhook_url: webhook,
 		email_address: email
-	}
-
-	api(item,'POST','/1/withcallback',responseHandler);
-
+	},'POST','/1/withcallback',responseHandler);
 });
-
 function responseHandler(res){
 	//TODO no ugly alert
 	alert(res);
 }
-
 clear.addEventListener('click',function(){
 	var input_email = getEl('.email');
-		input_email.value = '';
+	var input_email.value = '';
 	var webhook_url = getEl('.webhook');
-		webhook_url.value = '';
+	var webhook_url.value = '';
 });
