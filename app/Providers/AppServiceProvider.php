@@ -13,6 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+		view()->composer('layouts.master', function($view)
+		{
+			$view->with('revision', config('app.revision'));
+		});
     }
 
     /**

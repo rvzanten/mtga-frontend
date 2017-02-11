@@ -7,20 +7,20 @@ if (typeof window.FileReader === 'undefined') {
 	alert('Filereader is not supported in this browser')
 }
 body.ondragover = function () {
-	dragndrop_holder.style.borderColor = "black";
+	dragndrop_holder.className = "holder black";
 	dragndrop_holder.innerHTML = 'Drag and Drop your document here';
 	return false;
 };
 body.ondragend = function () {
-	dragndrop_holder.style.borderColor = "#ccc";
+	dragndrop_holder.className = "holder ccc";
 	return false;
 };
 body.dragleave = function () {
-	dragndrop_holder.style.borderColor = "#ccc";
+	dragndrop_holder.className = "holder ccc";
 	return false;
 };
 body.ondrop = function (e) {
-	dragndrop_holder.style.borderColor = "#39b54a"
+	dragndrop_holder.className = "holder green";
 	dragndrop_holder.innerHTML = '<img src="img/tick.png" />';
 	e.preventDefault();
 	var file = e.dataTransfer.files[0],
@@ -68,8 +68,17 @@ function api(params, method, endpoint, cb) {
 	};
 	request.send();
 }
+function result(msg, type){
+	var result = getEl('.result')
+	result.innerHTML = msg;
+	if(type){
+		result.className = "result "+type;
+	}
+}
+function responseHandler(res){
+	result(res, "success")
+}
 send.addEventListener('click', function(){
-	var errors = getEl('.error')
 	var input_email = getEl('.email');
 	var webhook_url = getEl('.webhook');
 	var hash = getEl('.sha256');
@@ -78,13 +87,12 @@ send.addEventListener('click', function(){
 	} else {
 		var webhook = '';
 	}
-	errors.innerHTML = '';
 	if(input_email.value.length == 0){
-		errors.innerHTML += 'No a valid Email address';
+		result("E-mail field empty", "error");
 		return;
 	}
 	if (getEl('.sha256').innerHTML.length != 64 ){
-		errors.innerHTML += "Invalid Hash";
+		result("Invalid document hash", "error");
 		return;
 	}
 	api({
@@ -93,11 +101,8 @@ send.addEventListener('click', function(){
 		email_address: email
 	},'POST','/1/withcallback',responseHandler);
 });
-function responseHandler(res){
-	//TODO no ugly alert
-	alert(res);
-}
 clear.addEventListener('click',function(){
+	result("")
 	var input_email = getEl('.email');
 		input_email.value = '';
 	var webhook_url = getEl('.webhook');

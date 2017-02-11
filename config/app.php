@@ -16,6 +16,8 @@ return [
 
     'server_url' => env('APP_OTSURL', 'http://localhost'),
 
+    'revision' => env('APP_REVISION'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

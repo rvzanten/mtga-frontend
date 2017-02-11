@@ -1,4 +1,5 @@
 exclude:
+- /public/swagger-ui/.*
 - /config/.*
 - /resources/lang/en/.*
 component_depth: 1

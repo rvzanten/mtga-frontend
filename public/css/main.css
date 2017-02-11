@@ -7,6 +7,10 @@ html, body {
   margin: 0;
   width: 100% !important; }
 
+input {
+  padding: 10px;
+  margin: 10px; }
+
 header {
   height: 50px; }
   header h1 {
@@ -28,7 +32,10 @@ header {
     top: -6px;
     cursor: pointer; }
     header small:hover {
-      color: green; }
+      color: #39b54a; }
+
+h3:before {
+  content: "- "; }
 
 .widthCenter {
   margin-left: auto;
@@ -73,14 +80,16 @@ footer {
   margin-top: 10px;
   margin-bottom: 30px; }
 
-#sha256 {
+.sha256 {
   text-align: center;
   font-family: monospace; }
 
-#callbacks {
+.callbacks {
   text-align: center; }
+  .callbacks input {
+    width: 25%; }
 
-#holder {
+.holder {
   border: 10px dashed #ccc;
   width: 300px;
   height: 300px;
@@ -89,14 +98,18 @@ footer {
   vertical-align: middle;
   line-height: 300px;
   color: gray; }
+  .holder img {
+    width: 50px;
+    height: 50px; }
 
-#holder.hover {
-  border: 10px dashed #333; }
+.black {
+  border-color: black; }
 
-input {
-  padding: 10px;
-  margin: 10px;
-  width: 25%; }
+.ccc {
+  border-color: #ccc; }
+
+.green {
+  border-color: #39b54a; }
 
 .docs_content {
   margin-top: 25px; }
@@ -105,16 +118,35 @@ input {
   border: none;
   height: 500px; }
 
-#tree {
+button.resetTree {
+  position: relative;
+  display: none;
+  top: 5px;
+  float: left;
+  left: 5px; }
+
+.tree {
   height: 400px;
   width: 90%;
-  border: 1px solid gray;
+  border: 1px solid #efefef;
   background-color: #fff; }
-  #tree button {
-    display: block;
+  .tree .pop_container {
+    vertical-align: center;
+    margin-top: 160px;
     margin-left: auto;
     margin-right: auto;
-    vertical-align: center;
-    margin-top: 180px; }
+    width: 420px; }
+    .tree .pop_container input {
+      width: 75%; }
+
+.result {
+  display: block;
+  padding: 10px; }
+
+.error {
+  color: red; }
+
+.success {
+  color: #39b54a; }
 
 /*# sourceMappingURL=main.css.map */

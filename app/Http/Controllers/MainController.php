@@ -9,7 +9,8 @@ class MainController extends Controller
     function index(){
 
 		 $data = array(
-			 'server_url' => config('app.server_url')
+			 'server_url' => config('app.server_url'),
+			 'revision' => config('app.revision')
 		 );
 
 		return view('welcome', $data);
@@ -17,7 +18,8 @@ class MainController extends Controller
 
     function docs(){
 		 $data = array(
-			 'docs' => file_get_contents(base_path().'/resources/docs.html')
+			 'docs' => file_get_contents(base_path().'/resources/docs.html'),
+			 'revision' => config('app.revision')
 		 );
 		return view('docs', $data);
 	}
