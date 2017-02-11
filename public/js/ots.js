@@ -99,7 +99,7 @@ function responseHandler(res){
 }
 clear.addEventListener('click',function(){
 	var input_email = getEl('.email');
-	var input_email.value = '';
+		input_email.value = '';
 	var webhook_url = getEl('.webhook');
-	var webhook_url.value = '';
+		webhook_url.value = '';
 });
