@@ -1,5 +1,6 @@
 exclude:
 - /config/.*
+- /resources/lang/en/.*
 component_depth: 1
 languages:
 - javascript
