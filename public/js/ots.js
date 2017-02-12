@@ -7,21 +7,21 @@ if (typeof window.FileReader === 'undefined') {
 	alert('Filereader is not supported in this browser')
 }
 body.ondragover = function () {
-	dragndrop_holder.className = "holder black";
-	dragndrop_holder.innerHTML = 'Drag and Drop your document here';
+	dragndrop_holder.className = "holder greenThick";
+	dragndrop_holder.innerHTML = '<img src="img/doc.png" class="doc" /> Drag & Drop your document here';
 	return false;
 };
 body.ondragend = function () {
-	dragndrop_holder.className = "holder ccc";
+	dragndrop_holder.className = "holder";
 	return false;
 };
 body.dragleave = function () {
-	dragndrop_holder.className = "holder ccc";
+	dragndrop_holder.className = "holder";
 	return false;
 };
 body.ondrop = function (e) {
-	dragndrop_holder.className = "holder green";
-	dragndrop_holder.innerHTML = '<img src="img/tick.png" />';
+	dragndrop_holder.className = "holder greenThickOk";
+	dragndrop_holder.innerHTML = '<img class="tick" src="img/tick.png" />';
 	e.preventDefault();
 	var file = e.dataTransfer.files[0],
 	reader = new FileReader();
@@ -29,6 +29,7 @@ body.ondrop = function (e) {
 		hash(reader.result)
 	}
 	reader.readAsArrayBuffer(file);
+	result("", false);
 	return false;
 };
 function getEl(selector){
@@ -47,27 +48,6 @@ function arrayBufferToWordArray(ab) {
 	}
 	return CryptoJS.lib.WordArray.create(a, i8a.length);
 }
-function api(params, method, endpoint, cb) {
-	var url = baseurl + endpoint;
-	var request = new XMLHttpRequest();
-	request.open(method, url, true);
-	if (method == 'POST'){
-		request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-		request.send(params);
-	}
-	request.onload = function () {
-		if (request.status >= 200 && request.status < 400) {
-			var resp = request.responseText;
-			cb(resp);
-		} else {
-			cb("Error, got wrong answer from the server.");
-		}
-	};
-	request.onerror = function () {
-		cb("Something went wrong on our end.");
-	};
-	request.send();
-}
 function result(msg, type){
 	var result = getEl('.result')
 	result.innerHTML = msg;
@@ -75,19 +55,42 @@ function result(msg, type){
 		result.className = "result "+type;
 	}
 }
-function responseHandler(res){
-	result(res, "success")
+function responseHandler(res, success){
+	if(success){
+		result(res, "success");
+	}else{
+		result(res, "error");
+	}
 }
+
+var swagger = new SwaggerClient({
+	url : window.location.origin +'/swagger.json',
+	success: function() {
+
+		var a = document.createElement("a");
+		var href = document.createAttribute("href");
+		href.value = baseurl;
+		a.setAttributeNode(href);
+
+		swagger.setSchemes([a.protocol.substring(0,a.protocol.length-1)]);
+		swagger.setHost(a.host);
+		swagger.setBasePath(a.pathname);
+	},
+	failure: function() {
+		responseHandler("Something went wrong on our end", false);
+	}
+});
+
 send.addEventListener('click', function(){
-	var input_email = getEl('.email');
+	var input_email = getEl('.email').value;
 	var webhook_url = getEl('.webhook');
 	var hash = getEl('.sha256');
 	if (webhook_url.value ){
-		var webhook = webhook_url.value;
+		var input_callback = webhook_url.value;
 	} else {
-		var webhook = '';
+		var input_callback = '';
 	}
-	if(input_email.value.length == 0){
+	if(input_email.length == 0){
 		result("E-mail field empty", "error");
 		return;
 	}
@@ -95,11 +98,22 @@ send.addEventListener('click', function(){
 		result("Invalid document hash", "error");
 		return;
 	}
-	api({
-		document_hash: base,
-		webhook_url: webhook,
-		email_address: email
-	},'POST','/1/withcallback',responseHandler);
+	swagger.Timestamp.WithCallback({
+			body:{
+				document_hash: base,
+				webhook_url: input_callback,
+				email_address: input_email
+			}
+		},
+		function(data){
+			if(data){
+				responseHandler("Document hash submitted!", true);
+			}
+		},
+		function(error){
+			responseHandler(error, false);
+		}
+	);
 });
 clear.addEventListener('click',function(){
 	result("")
