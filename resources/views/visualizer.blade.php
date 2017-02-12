@@ -4,9 +4,13 @@
 
 @section('content')
     <h2>Visualizer</h2>
-	<div id="selected_node"></div>
-	<div id="tree">
-		<button>Meggelize</button>
+	<div class="selected_node"></div>
+	<button class="resetTree">&laquo; Reset</button>
+	<div class="tree">
+		<div class="pop_container">
+			<input type="text" placeholder="Enter your proof of publication hash here"/>
+			<button class="visualize">Visualize</button>
+		</div>
 	</div>
 @endsection
 
@@ -14,5 +18,5 @@
 	<script src="http://visjs.org/dist/vis.js" type="text/javascript" ></script>
 	<script src="http://visjs.org/examples/network/exampleUtil.js" type="text/javascript" ></script>
 	<link href="http://visjs.org/dist/vis-network.min.css" rel="stylesheet" >
-	<script src="js/visualizer.js" type="text/javascript"></script>
+	<script src="js/visualizer.js?rev={{ $revision }}" type="text/javascript"></script>
 @endsection

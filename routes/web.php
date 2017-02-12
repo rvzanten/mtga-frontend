@@ -20,5 +20,5 @@ Route::get('/docs', 'MainController@docs');
 });*/
 
 Route::get('/visualizer', function () {
-    return view('visualizer');
+    return view('visualizer', ['revision' => config('app.revision')]);
 });
