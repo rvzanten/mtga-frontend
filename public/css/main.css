@@ -123,7 +123,8 @@ footer {
   .callbacks input {
     width: 25%; }
   .callbacks h2 {
-    color: #1db756; }
+    color: #1db756;
+    font-size: 22px; }
 
 .holder {
   border: 1px solid #1db756;
