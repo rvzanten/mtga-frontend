@@ -16,8 +16,8 @@
 					<small>Proof your trust</small>
 				</div>
 				<div class="nav">
-					<a href="{{ url('/') }}">Upload</a>
-					<a href="{{ url('/docs') }}">Docs</a>
+					<a @if(Request::path() === '/')class="current"@endif href="{{ url('/') }}">Upload</a>
+					<a @if(Request::path() === 'docs')class="current"@endif href="{{ url('/docs') }}">Docs</a>
 				</div>
 			</header>
             <div class="content widthCenter">

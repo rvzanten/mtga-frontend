@@ -80,6 +80,9 @@ header {
     header .nav > a:hover {
       border-bottom: 1px solid #fffb00;
       padding-bottom: 3px; }
+  header .nav > a.current {
+    border-bottom: 1px solid #fffb00;
+    padding-bottom: 3px; }
 
 button {
   background-color: #ededed;
